@@ -17,7 +17,7 @@
     console.log(arguments.callee);//指向拥有这个arguments对象的函数，即inner()
     console.log(arguments.callee.caller);//这个属性保存着调用当前函数的函数的引用,即outer()
     console.log(inner.caller);/">
-<meta property="og:updated_time" content="2015-08-18T10:17:17.000Z">
+<meta property="og:updated_time" content="2015-08-18T10:29:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于原生js的一些研究">
 <meta name="twitter:description" content="callee和callerfunction inner(){
@@ -198,7 +198,7 @@
   
     <div class="article-meta">
       <a href="/2015/08/18/native-js/" class="article-date">
-  	<time datetime="2015-08-18T10:17:17.000Z" itemprop="datePublished">2015-08-18</time>
+  	<time datetime="2015-08-18T10:29:10.000Z" itemprop="datePublished">2015-08-18</time>
 </a>
     </div>
   
@@ -268,6 +268,7 @@ add(<span class="number">1</span>,<span class="number">2</span>,<span class="num
 <pre><code>var arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];
 console.<span class="built_in">log</span>(Array.prototype.slice.call(arr,<span class="number">2</span>));<span class="comment">//[3,4]</span>
 </code></pre><p>同样，还有<code>Array.prototype.forEach.call()</code>，<code>forEach()</code> 方法让数组的每一项都执行一次给定的函数。   </p>
+<a id="more"></a> 
 <h2 id="String()">String()</h2><p>我们可以用<code>String()</code>来确定某一变量是否是<code>null</code>或者<code>undefined</code></p>
 <pre><code><span class="keyword">var</span> a , b = <span class="keyword">null</span>;
 <span class="built_in">String</span>(a);<span class="comment">//undefined</span>
