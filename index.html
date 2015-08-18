@@ -196,7 +196,7 @@
   
     <div class="article-meta">
       <a href="/2015/08/18/native-js/" class="article-date">
-  	<time datetime="2015-08-18T09:18:26.000Z" itemprop="datePublished">2015-08-18</time>
+  	<time datetime="2015-08-18T09:39:19.000Z" itemprop="datePublished">2015-08-18</time>
 </a>
     </div>
   
@@ -205,10 +205,20 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/18/native-js/">Hello World</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前阵子忙于准备CET-6，没时间更新文章，之后大概一个月将忙于准备期末考，也应该不会更新了，今天趁周末有时间再更新一篇最近研究的一些东西吧。</p>
-<h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
+        <h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee)</span>;<span class="comment">//指向拥有这个arguments对象的函数，即inner()</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee.caller)</span>;<span class="comment">//这个属性保存着调用当前函数的函数的引用,即outer()</span>
     console.<span class="built_in">log</span><span class="params">(inner.caller)</span>;<span class="comment">//[Function: outer]</span>
