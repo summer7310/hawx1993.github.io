@@ -126,7 +126,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a>
+						<a href="/tags/Zepto/" style="font-size: 10px;">Zepto</a> <a href="/tags/bower/" style="font-size: 10px;">bower</a> <a href="/tags/broserify/" style="font-size: 10px;">broserify</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a>
 					</div>
 				</section>
 				
@@ -195,6 +195,168 @@ var _hmt = _hmt || [];
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-grunt" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/19/grunt/" class="article-date">
+  	<time datetime="2015-08-19T09:59:58.000Z" itemprop="datePublished">2015-08-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/19/grunt/">grunt和前端模块管理工具的简单使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="grunt的安装及使用教程">grunt的安装及使用教程</h2><p><code>grunt</code>是一套前端自动化工具，一个基于<code>nodeJs</code>的命令行工具，一般用于：</p>
+<pre><code>① 压缩文件
+② 合并文件
+③ 简单语法检查
+</code></pre><p><code>Grunt</code>的运行工具具有两个版本，一个是服务器端的版本（grunt），另一个是客户端版本(<code>grunt-cli</code>)。这里我们主要使用客户端版本：</p>
+<pre><code>$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> grunt-cli
+(加sudo貌似是osX10<span class="number">.10</span>之后的版本才需要)</span>
+</code></pre><p><code>Grunt</code>常用插件：</p>
+<pre><code><span class="number">1</span>).grunt-contrib-uglify：压缩js代码
+<span class="number">2</span>).grunt-contrib-concat：合并js文件
+<span class="number">3</span>).grunt-contrib-qunit：单元测试
+<span class="number">4</span>).grunt-contrib-jshint：js代码检查
+<span class="number">5</span>).grunt-contrib-watch：文件监控 
+</code></pre><p>###package.json和Gruntfile.js</p>
+<p><code>package.json</code>主要用于<code>Node.js</code>的包管理，比如<code>Grunt</code>插件安装；<br><code>Gruntfile.js</code>是<code>Grunt</code>配置文件，配置任务或者自定义任务。</p>
+<p>这两个文件必须放在项目的根目录，并且和项目文件一起提交<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bower/">bower</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/broserify/">broserify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grunt/">grunt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/19/grunt/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-js-framework" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/19/js-framework/" class="article-date">
+  	<time datetime="2015-08-19T09:58:58.000Z" itemprop="datePublished">2015-08-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/19/js-framework/">关于一些前端js框架的源码研究</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="underscore-js源码">underscore.js源码</h2><p><code>Underscore.js</code> 没有对原生 <code>JavaScript</code> 对象进行扩展,而是通过调用 <code>_()</code> 方法进行封装，一旦封装完成，原生 <code>JavaScript</code> 对象便成为一个 <code>Underscore</code> 对象。</p>
+<p>###判断给定变量是否是对象</p>
+<pre><code><span class="comment">// Is a given variable an object?</span>
+    _.isObject = function(obj) {
+        var <span class="keyword">type</span> = <span class="keyword">typeof</span> obj;
+        <span class="keyword">return</span> <span class="keyword">type</span> === <span class="string">'function</span>' || <span class="keyword">type</span> === <span class="string">'object</span>' &amp;&amp; !!obj;
+    };
+</code></pre><p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
+<pre><code><span class="number">1.</span> <span class="string">'undefined'</span> <span class="comment">--- 这个值未定义；</span>
+<span class="number">2.</span> <span class="string">'boolean'</span>    <span class="comment">--- 这个值是布尔值；</span>
+<span class="number">3.</span> <span class="string">'string'</span>        <span class="comment">--- 这个值是字符串；</span>
+<span class="number">4.</span> <span class="string">'number'</span>     <span class="comment">--- 这个值是数值；</span>
+<span class="number">5.</span> <span class="string">'object'</span>       <span class="comment">--- 这个值是对象或null；</span>
+<span class="number">6.</span> <span class="string">'function'</span>    <span class="comment">--- 这个值是函数。  </span>
+</code></pre><p>而<code>&amp;&amp;</code>的优先级要高与<code>||</code>。<code>!!</code>的作用相当于<code>Boolean()</code>，将其转换为布尔值。</p>
+<p>###判断给定值是否是DOM元素<br>    // Is a given value a DOM element?<br>        _.isElement = function(obj) {<br>            return !!(obj &amp;&amp; obj.nodeType === 1);<br>        };</p>
+<p>同样<code>!!</code>相当于<code>Boolean()</code>的作用，<code>nodeType === 1</code>则说明是元素节点，属性<code>attr</code>是2 ，文本<code>text</code>是3   </p>
+<pre><code><span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span>测试<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+    <span class="keyword">var</span> t = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);
+    alert(t.nodeType);<span class="comment">//1</span>
+    alert(t.nodeName);<span class="comment">//p</span>
+    alert(t.nodeValue);<span class="comment">//null</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+</code></pre><p><code>firstChild</code>属性</p>
+<pre><code>var t = document.getElementById<span class="params">('test')</span>.firstChild;
+alert<span class="params">(t.nodeType)</span>;<span class="comment">//3</span>
+alert<span class="params">(t.nodeName)</span>;<span class="comment">//#test</span>
+alert<span class="params">(t.nodeValue)</span>;<span class="comment">//测试</span>
+</code></pre><p>文本节点也算是一个节点，所以p的子节点是文本节点，所以返回3<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zepto/">Zepto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/19/js-framework/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-github-project" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -378,160 +540,6 @@ console.<span class="built_in">log</span>(Array.prototype.slice.call(arr,<span c
       
         <p class="article-more-link">
           <a  href="/2015/08/19/native-js/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-js-framework" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/19/js-framework/" class="article-date">
-  	<time datetime="2015-08-19T08:40:11.000Z" itemprop="datePublished">2015-08-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/19/js-framework/">关于一些前端js框架的源码研究</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="underscore-js源码">underscore.js源码</h2><p><code>Underscore.js</code> 没有对原生 <code>JavaScript</code> 对象进行扩展,而是通过调用 <code>_()</code> 方法进行封装，一旦封装完成，原生 <code>JavaScript</code> 对象便成为一个 <code>Underscore</code> 对象。</p>
-<p>###判断给定变量是否是对象</p>
-<pre><code><span class="comment">// Is a given variable an object?</span>
-    _.isObject = function(obj) {
-        var <span class="keyword">type</span> = <span class="keyword">typeof</span> obj;
-        <span class="keyword">return</span> <span class="keyword">type</span> === <span class="string">'function</span>' || <span class="keyword">type</span> === <span class="string">'object</span>' &amp;&amp; !!obj;
-    };
-</code></pre><p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
-<pre><code><span class="number">1.</span> <span class="string">'undefined'</span> <span class="comment">--- 这个值未定义；</span>
-<span class="number">2.</span> <span class="string">'boolean'</span>    <span class="comment">--- 这个值是布尔值；</span>
-<span class="number">3.</span> <span class="string">'string'</span>        <span class="comment">--- 这个值是字符串；</span>
-<span class="number">4.</span> <span class="string">'number'</span>     <span class="comment">--- 这个值是数值；</span>
-<span class="number">5.</span> <span class="string">'object'</span>       <span class="comment">--- 这个值是对象或null；</span>
-<span class="number">6.</span> <span class="string">'function'</span>    <span class="comment">--- 这个值是函数。  </span>
-</code></pre><p>而<code>&amp;&amp;</code>的优先级要高与<code>||</code>。<code>!!</code>的作用相当于<code>Boolean()</code>，将其转换为布尔值。</p>
-<p>###判断给定值是否是DOM元素<br>    // Is a given value a DOM element?<br>        _.isElement = function(obj) {<br>            return !!(obj &amp;&amp; obj.nodeType === 1);<br>        };</p>
-<p>同样<code>!!</code>相当于<code>Boolean()</code>的作用，<code>nodeType === 1</code>则说明是元素节点，属性<code>attr</code>是2 ，文本<code>text</code>是3   </p>
-<pre><code><span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span>测试<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> t = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);
-    alert(t.nodeType);<span class="comment">//1</span>
-    alert(t.nodeName);<span class="comment">//p</span>
-    alert(t.nodeValue);<span class="comment">//null</span>
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-</code></pre><p><code>firstChild</code>属性</p>
-<pre><code>var t = document.getElementById<span class="params">('test')</span>.firstChild;
-alert<span class="params">(t.nodeType)</span>;<span class="comment">//3</span>
-alert<span class="params">(t.nodeName)</span>;<span class="comment">//#test</span>
-alert<span class="params">(t.nodeValue)</span>;<span class="comment">//测试</span>
-</code></pre><p>文本节点也算是一个节点，所以p的子节点是文本节点，所以返回3<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/08/19/js-framework/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-grunt" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/19/grunt/" class="article-date">
-  	<time datetime="2015-08-19T03:40:07.000Z" itemprop="datePublished">2015-08-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/19/grunt/">grunt和前端模块管理工具的简单使用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="grunt的安装及使用教程">grunt的安装及使用教程</h2><p><code>grunt</code>是一套前端自动化工具，一个基于<code>nodeJs</code>的命令行工具，一般用于：</p>
-<pre><code>① 压缩文件
-② 合并文件
-③ 简单语法检查
-</code></pre><p><code>Grunt</code>的运行工具具有两个版本，一个是服务器端的版本（grunt），另一个是客户端版本(<code>grunt-cli</code>)。这里我们主要使用客户端版本：</p>
-<pre><code>$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> grunt-cli
-(加sudo貌似是osX10<span class="number">.10</span>之后的版本才需要)</span>
-</code></pre><p><code>Grunt</code>常用插件：</p>
-<pre><code><span class="number">1</span>).grunt-contrib-uglify：压缩js代码
-<span class="number">2</span>).grunt-contrib-concat：合并js文件
-<span class="number">3</span>).grunt-contrib-qunit：单元测试
-<span class="number">4</span>).grunt-contrib-jshint：js代码检查
-<span class="number">5</span>).grunt-contrib-watch：文件监控 
-</code></pre><p>###package.json和Gruntfile.js</p>
-<p><code>package.json</code>主要用于<code>Node.js</code>的包管理，比如<code>Grunt</code>插件安装；<br><code>Gruntfile.js</code>是<code>Grunt</code>配置文件，配置任务或者自定义任务。</p>
-<p>这两个文件必须放在项目的根目录，并且和项目文件一起提交<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/08/19/grunt/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
