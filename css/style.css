@@ -522,7 +522,7 @@ a {
                 box-shadow: 0 0 0 10px rgba(228,34,77,0);
             }
          }
-#header .profilepic:hover{
+#header .profilepic:hover:after{
 	animation: ripple-animation .5s ease-in-out;
     -webkit-animation: ripple-animation .5s ease-in-out;
 }
