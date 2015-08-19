@@ -204,7 +204,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/08/19/grunt/" class="article-date">
-  	<time datetime="2015-08-19T03:37:19.000Z" itemprop="datePublished">2015-08-19</time>
+  	<time datetime="2015-08-19T03:38:45.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
     </div>
   
@@ -230,226 +230,7 @@ var _hmt = _hmt || [];
 <span class="number">5</span>).grunt-contrib-watch：文件监控 
 </code></pre><p>###package.json和Gruntfile.js</p>
 <p><code>package.json</code>主要用于<code>Node.js</code>的包管理，比如<code>Grunt</code>插件安装；<br><code>Gruntfile.js</code>是<code>Grunt</code>配置文件，配置任务或者自定义任务。</p>
-<p>这两个文件必须放在项目的根目录，并且和项目文件一起提交</p>
-<p>###安装package.json</p>
-<p>我们可以在终端通过<code>npm init</code>命令自动创建一个基本的<code>package.json</code>文件；可以直接使用<code>package.json</code>文件模板：</p>
-<pre><code><span class="collection">{ 
-<span class="string">"name"</span>:<span class="string">"项目名称"</span>, 
-<span class="string">"version"</span>:<span class="string">"项目版本号"</span>, 
-<span class="string">"description"</span>:<span class="string">"项目描述"</span>, 
-<span class="string">"author"</span>:<span class="string">"项目创建者"</span>, 
-<span class="string">"license"</span>:<span class="string">"项目版权"</span>, 
-<span class="string">"devDependencies"</span>: <span class="collection">{ 
-//项目依赖插件 
-    }</span> 
-}</span>
-</code></pre><p>注：</p>
-<pre><code><span class="string">"dependencies"</span>: {},<span class="comment">//生产环境</span>
-<span class="string">"devDependencies"</span>: {}<span class="comment">//开发环境</span>
-</code></pre><p>在<code>package.json</code>中最重要的就是<code>name</code>和<code>version</code>字段。他们都是必须的，如果没有就无法<code>install</code>。</p>
-<p>###package.json的用法</p>
-<pre><code>description：放简介，字符串。方便我们在<span class="built_in">npm</span> search中搜索。
-
-keywords：关键字，数组、字符串。还是方便我们在<span class="built_in">npm</span> search中搜索。
-
-main：该字段是一个模块ID，它是一个指向你程序的主要项目。就是说，如果你包的名字叫foo，然后用户安装它，然后<span class="built_in">require</span>(<span class="string">"foo"</span>)，然后你的main模块的exports对象会被返回。
-
-scripts：这是一个由脚本命令组成的hash对象，他们在包不同的生命周期中被执行。key是生命周期事件，value是要运行的命令。
-</code></pre><p>其余可以参照：<a href="https://github.com/ericdum/mujiang.info/issues/6" target="_blank" rel="external">https://github.com/ericdum/mujiang.info/issues/6</a></p>
-<p>###安装gruntfile.js文件</p>
-<p>我们可以通过<code>grunt-init</code>来创建<code>gruntfile.js</code>文件，也可以通过以下模板手工创建：</p>
-<pre><code><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>{
-<span class="comment">// 给grunt添加些设置</span>
- grunt.initConfig({
-     uglify: {
-         options: {
-             banner: <span class="string">'/*! 版权所有，这里乱写 */\n'</span>
-         },
-         build: { src: <span class="string">'src/core.js'</span>, <span class="comment">//要压缩的源文件，我们也可以用*表示通配，比如'src/*.js'</span>
-         dest: <span class="string">'dst/core.js'</span>,<span class="comment">//压缩后输出的位置，由于是在根目录，所以直接起个文件名就行</span>
-         }
-     }
- });
- <span class="comment">// 载入 "uglify" 插件任务</span>
- grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);<span class="comment">//引号内部为插件名</span>
-
- <span class="comment">//定义默认需要执行的任务</span>
- grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>]);<span class="comment">//uglify就是grunt任务</span>
-};
-</code></pre><p>###安装插件：<br>可以手动在<code>package.json</code>中添加<code>Grunt</code>的插件，也可以通过以下命令的方式向<code>package.json</code>文件中添加：</p>
-<pre><code>$ sudo npm install grunt插件名 --<span class="built_in">save</span>-<span class="built_in">dev</span>
-</code></pre><p>###实例：用Grunt进行压缩js代码</p>
-<p><code>grunt-contrib-uglify</code>是<code>Grunt.js</code>的一个任务模块，其基于著名的<code>js</code>压缩工具<code>uglify</code>，进行<code>js</code>压缩任务。</p>
-<p>首先我们在项目依赖加上<code>grunt-contrib-uglify</code>。首先<code>cd</code>命令进入一个文件夹，然后安装该插件：</p>
-<pre><code>$ sudo npm install grunt-contrib-uglify --<span class="built_in">save</span>-<span class="built_in">dev</span>
-</code></pre><p>在该文件夹根目录创建<code>package.json</code>文件如下：</p>
-<pre><code>{ 
-"<span class="attribute">name</span>": <span class="value"><span class="string">"test"</span></span>, 
-"<span class="attribute">version</span>": <span class="value"><span class="string">"0.1.0"</span></span>,
- "<span class="attribute">devDependencies</span>": <span class="value">{ 
-"<span class="attribute">grunt</span>": <span class="value"><span class="string">"~0.4.1"</span></span>, 
-"<span class="attribute">grunt-contrib-uglify</span>": <span class="value"><span class="string">"~0.2.0"</span> 
-    </span>} 
-</span>}
-</code></pre><p>或者你也可以直接在终端输入<code>npm init</code>命令来安装。</p>
-<p>接着输入<code>npm install</code> 命令来安装，你就会在项目根目录生成一个名为<code>node_modules</code>的文件夹，里面包含<code>grunt</code>和你安装的<code>grunt</code>插件</p>
-<p>接着写<code>gruntfile.js</code>文件，你可以手工新建一个名为<code>gruntfile.js</code>的文件，也可以在终端输入<code>grunt-init</code>来创建</p>
-<p><code>gruntfile.js</code>的文件源码如下</p>
-<pre><code><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>{
-<span class="comment">// 给grunt添加些设置</span>
- grunt.initConfig({
-     uglify: {
-         options: {
-             banner: <span class="string">'/*! 版权所有，这里乱写 */\n'</span>
-         },
-         build: { src: <span class="string">'jquery-1.9.1.js'</span>, <span class="comment">//要压缩的源文件，我们也可以用*表示通配，比如'src/*.js'</span>
-         dest: <span class="string">'jquery-1.9.1.min.js'</span>,<span class="comment">//压缩后输出的位置，由于是在根目录，所以直接起个文件名就行</span>
-         }
-     }
- });
- <span class="comment">// 载入 "uglify" 插件任务</span>
- grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);<span class="comment">//引号内部为插件名</span>
-
- <span class="comment">//定义默认需要执行的任务</span>
- grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'uglify'</span>]);<span class="comment">//uglify就是grunt任务</span>
-};
-</code></pre><p>我们在项目根目录放入一个名为<code>jquery-1.9.1.js</code>的文件，接着在终端输入：</p>
-<pre><code>grunt
-</code></pre><p>来执行整个项目文件，<code>grunt</code>则会自动完成任务，这时你就会看到根目录生成了一个被压缩过的<code>query-1.9.1.min.js</code>文件</p>
-<blockquote>
-<p>github地址：<a href="https://github.com/gruntjs/grunt" target="_blank" rel="external">https://github.com/gruntjs/grunt</a></p>
-</blockquote>
-<h2 id="broserify_的安装及使用教程">broserify 的安装及使用教程</h2><p><code>Browserify</code> 可以让你使用类似于 <code>node</code> 的 <code>require()</code> 的方式来组织浏览器端的 <code>Javascript</code> 代码，通过预编译让前端 <code>Javascript</code> 可以直接使用 <code>Node NPM</code> 安装的一些库。在浏览器中，调用<code>browserify</code>编译后的代码，同样写在<code>&lt;script&gt;</code>标签中。</p>
-<p>用 <code>Browserify</code> 的操作，分为3个步骤。</p>
-<pre><code><span class="number">1</span>. 写<span class="escape">`n</span>ode<span class="escape">`程</span>序或者模块
-<span class="number">2</span>. 用<span class="escape">`B</span>rowserify<span class="escape">` </span>预编译成 <span class="escape">`b</span>undle.js<span class="escape">`
-</span><span class="number">3</span>. 在<span class="escape">`H</span>TML<span class="escape">`页</span>面中加载<span class="escape">`b</span>undle.js`
-</code></pre><p>###安装方法</p>
-<pre><code>mac平台：$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> browserify
-其他平台：$ npm <span class="keyword">install</span> -<span class="keyword">g</span> browserify</span>
-</code></pre><p>###用法</p>
-<p>首先新建一个名为<code>main.js</code>的文件，粘贴如下代码：</p>
-<pre><code><span class="keyword">var</span> unique = <span class="built_in">require</span>(<span class="string">'uniq'</span>);
-
-<span class="keyword">var</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>];
-
-<span class="built_in">console</span>.log(unique(data));
-</code></pre><p>然后安装<code>uniq</code>模块：</p>
-<pre><code>$ sudo npm <span class="keyword">install</span> uniq
-其他平台去掉sudo即可
-</code></pre><p>输出文件：</p>
-<pre><code>$ browserify main<span class="class">.js</span> -o bundle<span class="class">.js</span>
-或者：
-browserify main<span class="class">.js</span> &gt; bundle.js
-</code></pre><p>也可以使用<code>node</code>输出这段程序：</p>
-<pre><code><span class="variable">$ </span>node main.js
-</code></pre><p>生成的<code>bundle.js</code>可以直接插入网页。</p>
-<pre><code><span class="tag">&lt;<span class="title">html</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-  <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><p>一些常用选项：</p>
-<pre><code>-<span class="ruby">-<span class="keyword">require</span>, -r
-</span>-<span class="ruby">-outfile, -o 
-</span>-<span class="ruby">-entry, -e
-</span>-<span class="ruby">-ignore, -i</span>
-</code></pre><p>你也可以引入相关文件通过以<code>..</code>开头的字符串，例如，从<code>main.js</code>载入<code>load.js</code>文件，在<code>main.js</code>文件中你可以这么做：</p>
-<pre><code><span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">'./foo.js'</span>);
-<span class="built_in">console</span>.log(foo(<span class="number">4</span>));
-</code></pre><p>如果<code>foo.js</code>是一个父目录，你可以用<code>../foo.js</code>替换：</p>
-<pre><code><span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">'../foo.js'</span>);
-<span class="built_in">console</span>.log(foo(<span class="number">4</span>));
-</code></pre><p>你可以使用<code>module.exports</code>来导出任意值，而不仅仅是函数。比如：</p>
-<pre><code><span class="function"><span class="keyword">module</span>.<span class="title">exports</span> =</span> <span class="number">1234</span>;
-</code></pre><p>也可以这样：</p>
-<pre><code><span class="variable"><span class="keyword">var</span> numbers</span> = [];
-<span class="keyword">for</span> (<span class="variable"><span class="keyword">var</span> i</span> = <span class="number">0</span>; i <span class="type">&lt; 100; i++) numbers.push(i);
-
-module.exports = numbers;</span>
-</code></pre><p>###一些实例</p>
-<p>你可以很容易地创建一个包，它将导出一个<code>require()</code>函数以便于你可以从其他<code>script</code>标签中<code>require()</code>模块。这里我们将用<code>through</code>和<code>duplexer</code>模块创建一个<code>bundle.js</code>：</p>
-<pre><code>$ browserify -r <span class="keyword">through</span> -r duplexer -r ./<span class="keyword">my</span>-<span class="type">file</span>.js:<span class="keyword">my</span>-module &gt; bundle.js
-</code></pre><p>然后在你的网页里你可以这样做：</p>
-<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-  <span class="keyword">var</span> through = <span class="built_in">require</span>(<span class="string">'through'</span>);
-  <span class="keyword">var</span> duplexer = <span class="built_in">require</span>(<span class="string">'duplexer'</span>);
-  <span class="keyword">var</span> myModule = <span class="built_in">require</span>(<span class="string">'my-module'</span>);
-  <span class="comment">/* ... */</span>
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-</code></pre><p>###api 实例</p>
-<p>你也可以直接地使用使用<code>API</code>：</p>
-<pre><code><span class="keyword">var</span> browserify = <span class="keyword">require</span>(<span class="string">'browserify'</span>);
-<span class="keyword">var</span> b = browserify();
-b.<span class="keyword">add</span>(<span class="string">'./browser/main.js'</span>);
-b.bundle().pipe(process.stdout);
-</code></pre><p><code>browserify([files] [, opts])</code>会返回一个<code>browserify</code>实例</p>
-<p>###grunt-browserify<br>你可以安装<code>grunt</code>的<code>browserify</code>插件。</p>
-<pre><code>$ sudo npm install grunt-browserify --<span class="built_in">save</span>-<span class="built_in">dev</span>
-</code></pre><blockquote>
-<p>官方github地址：<a href="https://github.com/substack/node-browserify" target="_blank" rel="external">https://github.com/substack/node-browserify</a></p>
-</blockquote>
-<h2 id="webpack的安装及使用教程">webpack的安装及使用教程</h2><p>###介绍<br><code>WebPack</code> 是一个模块打包工具，你可以使用<code>WebPack</code>管理你的模块依赖，并编绎输出模块们所需的静态文件。它能够很好地管理、打包Web开发中所用到的<code>HTML、Javascript、CSS</code>以及各种静态文件（图片、字体等），让开发过程更加高效。 </p>
-<p>为了将模块化技术用于浏览器，人们造出了一大堆工具比如：<a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a>、<a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>、<a href="http://labjs.com/" target="_blank" rel="external">LABjs</a>、<a href="http://seajs.org/docs/" target="_blank" rel="external">Sea.js</a>、<a href="http://duojs.org/" target="_blank" rel="external">Duo</a>等。同时，由于<code>Javascript</code>的标准没有对模块的规范进行定义，所以伟大的程序员们又定义了一系列不同的模块定义，比如：<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>、<a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" rel="external">AMD</a>、<a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD</a>、<a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD</a>等。</p>
-<p><code>Webpack</code>同时支持同步模式(CommonJS)和异步模式(AMD形式)的模块</p>
-<p>###webpack的优势：</p>
-<ul>
-<li><p><code>require.js</code>的所有功能它都有</p>
-</li>
-<li><p>编绎过程更快，因为<code>require.js</code>会去处理不需要的文件</p>
-</li>
-</ul>
-<p>###安装方法</p>
-<p>我们在全局环境的安装方法如下：</p>
-<pre><code>$ sudo npm <span class="operator"><span class="keyword">install</span> webpack -<span class="keyword">g</span></span>
-</code></pre><p>###实例</p>
-<p>首先在根目录创建一个名为test的项目文件夹，里面放一个<code>main.js</code>的文件，代码如下：</p>
-<pre><code>document.<span class="command">write</span>(<span class="string">"It works."</span>);
-</code></pre><p>再创建一个<code>index.html</code>文件，代码如下：</p>
-<pre><code><span class="tag">&lt;<span class="title">html</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">head</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"bundle.js"</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><p>这里的<code>bundle.js</code>是用<code>webpack</code>打包编译后生成的文件。执行编译如下：</p>
-<pre><code>$ webpack ./test/main<span class="class">.js</span> bundle.js
-</code></pre><p>然后就会在终端生成如下代码：</p>
-<pre><code>Hash: <span class="number">4447402</span>abfcd89f9daba
-Version: webpack <span class="number">1.9</span><span class="number">.7</span>
-Time: <span class="number">78</span>ms
-    Asset     Size  Chunks             Chunk Names
-bundle.js  <span class="number">1.44</span> kB       <span class="number">0</span>  [emitted]  main
-   [<span class="number">0</span>] ./test/main.js <span class="number">28</span> bytes {<span class="number">0</span>} [built]
-</code></pre><p>这时双击打开<code>index.html</code>文件就会看到<code>It works.</code>字样</p>
-<p>剩下例子看这里：<a href="http://webpack.github.io/docs/tutorials/getting-started/" target="_blank" rel="external">http://webpack.github.io/docs/tutorials/getting-started/</a></p>
-<blockquote>
-<p>github地址:<a href="https://github.com/webpack/webpack" target="_blank" rel="external">https://github.com/webpack/webpack</a></p>
-</blockquote>
-<h2 id="bower的安装及使用教程">bower的安装及使用教程</h2><p>###介绍</p>
-<p><code>Bower</code>是一个Web开发的包管理软件。每当你需要比如<code>jquery</code>文件，<code>angular.js</code>等等文件时，你无须满世界去寻找，你只需要通过<code>bower</code>即可下载使用，<code>bower</code>也可以用来管理这些包之间的依赖。</p>
-<p>功能有些类似于<code>Component</code>。不同之处是，<code>Component</code>是围绕<code>GitHub</code>系统构建的，而<code>Bower</code>既可以管理基于本地资源的包，也可以管理基于<code>git</code>系统的包。</p>
-<p>###安装方法</p>
-<pre><code>$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> bower</span>
-</code></pre><p>我们可以使用<code>bower</code>安装各种模块。</p>
-<pre><code><span class="comment"># 模块的名称</span>
-　　$ bower <span class="keyword">install</span> jquery
-　　<span class="comment"># github用户名/项目名</span>
-　　$ bower <span class="keyword">install</span> jquery/jquery
-　　<span class="comment"># git代码仓库地址</span>
-　　$ bower <span class="keyword">install</span> git://github.com/user/package.git
-　　<span class="comment"># 模块网址</span>
-　　$ bower <span class="keyword">install</span> http://example.com/script.js
-</code></pre><p>比如安装<code>jquery</code>，在终端输入：<code>$ bower install jquery</code>，就会在根目录生成<code>bower_components/jquery</code>文件夹</p>
-<p>我们可以使用<code>$ bowser update jquery</code>来更新指定模块名称，或者<code>bower unintsall jquery</code>，不写名称则默认更新/卸载所有模块。</p>
-<p>你也可以通过<code>$ bower init</code> 来保存你的<code>包</code>到<code>bower.json</code>文件中。<code>bower.json</code>是用来记录你的项目依赖的</p>
-<blockquote>
-<p>bower 主要API：<a href="http://bower.io/docs/api/" target="_blank" rel="external">http://bower.io/docs/api/</a></p>
-</blockquote>
-
+<p>这两个文件必须放在项目的根目录，并且和项目文件一起提交<br>
       
     </div>
     
@@ -458,6 +239,10 @@ bundle.js  <span class="number">1.44</span> kB       <span class="number">0</spa
       
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/19/grunt/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
