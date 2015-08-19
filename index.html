@@ -196,6 +196,105 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-native-js" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/19/native-js/" class="article-date">
+  	<time datetime="2015-08-19T09:39:51.000Z" itemprop="datePublished">2015-08-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/19/native-js/">关于原生js的一些研究</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>tag:</p>
+<ul>
+<li>js</li>
+<li>前端  </li>
+</ul>
+<h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
+    console.<span class="built_in">log</span><span class="params">(arguments.callee)</span>;<span class="comment">//指向拥有这个arguments对象的函数，即inner()</span>
+    console.<span class="built_in">log</span><span class="params">(arguments.callee.caller)</span>;<span class="comment">//这个属性保存着调用当前函数的函数的引用,即outer()</span>
+    console.<span class="built_in">log</span><span class="params">(inner.caller)</span>;<span class="comment">//[Function: outer]</span>
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">outer</span><span class="params">()</span>{</span>
+    inner<span class="params">()</span>;
+}
+outer<span class="params">()</span>;
+</code></pre><p><code>callee</code>放回正在执行的函数本身的引用，它是<code>arguments</code>的一个属性<br><code>caller</code> 返回一个函数的引用，这个函数调用了当前的函数。</p>
+<p>严格模式下，不允许访问<code>arguments.callee</code>和<code>arguments.caller</code>属性，主要体现在<code>arguments.[[Get]]</code>内部方法</p>
+<p>严格模式下，<code>arguments，arguments.callee，arguments.caller，arguments.callee.caller</code>也不允许再被赋值。如下代码所示：</p>
+<pre><code><span class="pi">'use strict'</span>;
+<span class="comment">// 两次都是1</span>
+<span class="keyword">void</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a</span>) </span>{
+    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);
+    a = <span class="number">2</span>;
+    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);
+}(<span class="number">1</span>);
+
+
+<span class="comment">//function(){}(); 会运行错误, 如下可以正确被运行.</span>
+
+<span class="keyword">void</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
+    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);<span class="comment">//hi</span>
+}();
+</code></pre><p>在使用立即执行的函数表达式时，可以利用 <code>void</code> 运算符让 <code>JavaScript</code> 引擎把一个函数识别成<code>函数表达式</code>而不是函数声明（语句）。</p>
+<p>###实参和形参</p>
+<pre><code><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>{
+    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.length);<span class="comment">//3,表示实参长度</span>
+    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.callee.length);<span class="comment">//2，表示形参长度</span>
+};
+
+add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);
+</code></pre><h2 id="Array-prototype-slice-call(arguments)">Array.prototype.slice.call(arguments)</h2><p><code>slice</code>有两个用法，一个是<code>String.slice</code>，一个是<code>Array.slice</code>，第一个返回的是字符串，第二个返回的是数组。</p>
+<p><code>Array.prototype.slice.call(arguments)</code>能够将<code>arguments</code>转成数组，那么就是<code>arguments.toArray().slice()</code>;</p>
+<p>因为<code>arguments</code>并不是真正的数组对象，只是与数组类似而已，所以它并没有<code>slice</code>这个方法，而<code>Array.prototype.slice.call(arguments)</code>可以理解成是将<code>arguments</code>转换成一个数组对象，让<code>arguments</code>具有<code>slice()</code>方法。 比如：</p>
+<pre><code>var arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];
+console.<span class="built_in">log</span>(Array.prototype.slice.call(arr,<span class="number">2</span>));<span class="comment">//[3,4]</span>
+</code></pre><p>同样，还有<code>Array.prototype.forEach.call()</code>，<code>forEach()</code> 方法让数组的每一项都执行一次给定的函数。   </p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/19/native-js/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-js-framework" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -426,100 +525,6 @@ alert<span class="params">(t.nodeValue)</span>;<span class="comment">//测试</s
       
         <p class="article-more-link">
           <a  href="/2015/08/18/github-project/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-native-js" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/18/native-js/" class="article-date">
-  	<time datetime="2015-08-18T10:29:10.000Z" itemprop="datePublished">2015-08-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/18/native-js/">关于原生js的一些研究</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
-    console.<span class="built_in">log</span><span class="params">(arguments.callee)</span>;<span class="comment">//指向拥有这个arguments对象的函数，即inner()</span>
-    console.<span class="built_in">log</span><span class="params">(arguments.callee.caller)</span>;<span class="comment">//这个属性保存着调用当前函数的函数的引用,即outer()</span>
-    console.<span class="built_in">log</span><span class="params">(inner.caller)</span>;<span class="comment">//[Function: outer]</span>
-}
-
-<span class="function"><span class="keyword">function</span> <span class="title">outer</span><span class="params">()</span>{</span>
-    inner<span class="params">()</span>;
-}
-outer<span class="params">()</span>;
-</code></pre><p><code>callee</code>放回正在执行的函数本身的引用，它是<code>arguments</code>的一个属性<br><code>caller</code> 返回一个函数的引用，这个函数调用了当前的函数。</p>
-<p>严格模式下，不允许访问<code>arguments.callee</code>和<code>arguments.caller</code>属性，主要体现在<code>arguments.[[Get]]</code>内部方法</p>
-<p>严格模式下，<code>arguments，arguments.callee，arguments.caller，arguments.callee.caller</code>也不允许再被赋值。如下代码所示：</p>
-<pre><code><span class="pi">'use strict'</span>;
-<span class="comment">// 两次都是1</span>
-<span class="keyword">void</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a</span>) </span>{
-    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);
-    a = <span class="number">2</span>;
-    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);
-}(<span class="number">1</span>);
-
-
-<span class="comment">//function(){}(); 会运行错误, 如下可以正确被运行.</span>
-
-<span class="keyword">void</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{
-    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);<span class="comment">//hi</span>
-}();
-</code></pre><p>在使用立即执行的函数表达式时，可以利用 <code>void</code> 运算符让 <code>JavaScript</code> 引擎把一个函数识别成<code>函数表达式</code>而不是函数声明（语句）。</p>
-<p>###实参和形参</p>
-<pre><code><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>{
-    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.length);<span class="comment">//3,表示实参长度</span>
-    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.callee.length);<span class="comment">//2，表示形参长度</span>
-};
-
-add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);
-</code></pre><h2 id="Array-prototype-slice-call(arguments)">Array.prototype.slice.call(arguments)</h2><p><code>slice</code>有两个用法，一个是<code>String.slice</code>，一个是<code>Array.slice</code>，第一个返回的是字符串，第二个返回的是数组。</p>
-<p><code>Array.prototype.slice.call(arguments)</code>能够将<code>arguments</code>转成数组，那么就是<code>arguments.toArray().slice()</code>;</p>
-<p>因为<code>arguments</code>并不是真正的数组对象，只是与数组类似而已，所以它并没有<code>slice</code>这个方法，而<code>Array.prototype.slice.call(arguments)</code>可以理解成是将<code>arguments</code>转换成一个数组对象，让<code>arguments</code>具有<code>slice()</code>方法。 比如：</p>
-<pre><code>var arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];
-console.<span class="built_in">log</span>(Array.prototype.slice.call(arr,<span class="number">2</span>));<span class="comment">//[3,4]</span>
-</code></pre><p>同样，还有<code>Array.prototype.forEach.call()</code>，<code>forEach()</code> 方法让数组的每一项都执行一次给定的函数。   </p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/08/18/native-js/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
