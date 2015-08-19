@@ -525,6 +525,8 @@ a {
 #header .profilepic:hover{
 	background-color: rgb(76,163,196);
     box-shadow: 1px 1px 3px -1px rgb(76,163,196);
+    animation: ripple-animation .5s ease-in-out;
+    -webkit-animation: ripple-animation .5s ease-in-out;
 }
 #header .profilepic:hover:after{
 	animation: ripple-animation .5s ease-in-out;
