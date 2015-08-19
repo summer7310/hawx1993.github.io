@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/08/19/js-framework/" class="article-date">
-  	<time datetime="2015-08-19T08:35:51.000Z" itemprop="datePublished">2015-08-19</time>
+  	<time datetime="2015-08-19T08:40:11.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
     </div>
   
@@ -223,8 +223,13 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="underscore-js源码">underscore.js源码</h2><p><code>Underscore.js</code> 没有对原生 <code>JavaScript</code> 对象进行扩展,而是通过调用 <code>_()</code> 方法进行封装，一旦封装完成，原生 <code>JavaScript</code> 对象便成为一个 <code>Underscore</code> 对象。</p>
-<p>###判断给定变量是否是对象<br>    // Is a given variable an object?<br>        _.isObject = function(obj) {<br>            var type = typeof obj;<br>            return type === ‘function’ || type === ‘object’ &amp;&amp; !!obj;<br>        };</p>
-<p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
+<p>###判断给定变量是否是对象</p>
+<pre><code><span class="comment">// Is a given variable an object?</span>
+    _.isObject = function(obj) {
+        var <span class="keyword">type</span> = <span class="keyword">typeof</span> obj;
+        <span class="keyword">return</span> <span class="keyword">type</span> === <span class="string">'function</span>' || <span class="keyword">type</span> === <span class="string">'object</span>' &amp;&amp; !!obj;
+    };
+</code></pre><p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
 <pre><code><span class="number">1.</span> <span class="string">'undefined'</span> <span class="comment">--- 这个值未定义；</span>
 <span class="number">2.</span> <span class="string">'boolean'</span>    <span class="comment">--- 这个值是布尔值；</span>
 <span class="number">3.</span> <span class="string">'string'</span>        <span class="comment">--- 这个值是字符串；</span>

@@ -20,19 +20,25 @@ var _hmt = _hmt || [];
   <title>关于一些前端js框架的源码研究 | trigkit4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="underscore.js源码Underscore.js 没有对原生 JavaScript 对象进行扩展,而是通过调用 _() 方法进行封装，一旦封装完成，原生 JavaScript 对象便成为一个 Underscore 对象。
-###判断给定变量是否是对象    // Is a given variable an object?        _.isObject = function(obj)">
+###判断给定变量是否是对象
+// Is a given variable an object?
+    _.isObject = function(obj) {">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于一些前端js框架的源码研究">
 <meta property="og:url" content="hawx1993.github.io/2015/08/19/js-framework/index.html">
 <meta property="og:site_name" content="trigkit4">
 <meta property="og:description" content="underscore.js源码Underscore.js 没有对原生 JavaScript 对象进行扩展,而是通过调用 _() 方法进行封装，一旦封装完成，原生 JavaScript 对象便成为一个 Underscore 对象。
-###判断给定变量是否是对象    // Is a given variable an object?        _.isObject = function(obj)">
+###判断给定变量是否是对象
+// Is a given variable an object?
+    _.isObject = function(obj) {">
 <meta property="og:image" content="hawx1993.github.io/img/bVlmSc">
-<meta property="og:updated_time" content="2015-08-19T08:35:51.000Z">
+<meta property="og:updated_time" content="2015-08-19T08:40:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于一些前端js框架的源码研究">
 <meta name="twitter:description" content="underscore.js源码Underscore.js 没有对原生 JavaScript 对象进行扩展,而是通过调用 _() 方法进行封装，一旦封装完成，原生 JavaScript 对象便成为一个 Underscore 对象。
-###判断给定变量是否是对象    // Is a given variable an object?        _.isObject = function(obj)">
+###判断给定变量是否是对象
+// Is a given variable an object?
+    _.isObject = function(obj) {">
   
     <link rel="alternative" href="/atom.xml" title="trigkit4" type="application/atom+xml">
   
@@ -203,7 +209,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/08/19/js-framework/" class="article-date">
-  	<time datetime="2015-08-19T08:35:51.000Z" itemprop="datePublished">2015-08-19</time>
+  	<time datetime="2015-08-19T08:40:11.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
     </div>
   
@@ -233,8 +239,13 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="underscore-js源码">underscore.js源码</h2><p><code>Underscore.js</code> 没有对原生 <code>JavaScript</code> 对象进行扩展,而是通过调用 <code>_()</code> 方法进行封装，一旦封装完成，原生 <code>JavaScript</code> 对象便成为一个 <code>Underscore</code> 对象。</p>
-<p>###判断给定变量是否是对象<br>    // Is a given variable an object?<br>        _.isObject = function(obj) {<br>            var type = typeof obj;<br>            return type === ‘function’ || type === ‘object’ &amp;&amp; !!obj;<br>        };</p>
-<p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
+<p>###判断给定变量是否是对象</p>
+<pre><code><span class="comment">// Is a given variable an object?</span>
+    _.isObject = function(obj) {
+        var <span class="keyword">type</span> = <span class="keyword">typeof</span> obj;
+        <span class="keyword">return</span> <span class="keyword">type</span> === <span class="string">'function</span>' || <span class="keyword">type</span> === <span class="string">'object</span>' &amp;&amp; !!obj;
+    };
+</code></pre><p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
 <pre><code><span class="number">1.</span> <span class="string">'undefined'</span> <span class="comment">--- 这个值未定义；</span>
 <span class="number">2.</span> <span class="string">'boolean'</span>    <span class="comment">--- 这个值是布尔值；</span>
 <span class="number">3.</span> <span class="string">'string'</span>        <span class="comment">--- 这个值是字符串；</span>
@@ -475,20 +486,31 @@ t.call(<span class="string">'trigkit4'</span>);
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_tools_1"></a>
+	<a class="jiathis_button_tools_2"></a>
+	<a class="jiathis_button_tools_3"></a>
+	<a class="jiathis_button_tools_4"></a>
+	<a href="http://www.jiathis.com/share?uid=2055108" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
 </div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2055108" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_like_tsina" data="width=120"></a>
+	<a class="jiathis_like_qzone"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=2055108" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
 
 
