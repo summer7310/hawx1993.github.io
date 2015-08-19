@@ -506,6 +506,10 @@ a {
   -webkit-box-align: center;
   text-align: center;
 }
+#header .profilepic:hover{
+	background-color: rgb(76,163,196);
+    box-shadow: 1px 1px 3px -1px rgb(76,163,196);
+}
 #header .profilepic img {
   width: 20%;
   height: 20%;
