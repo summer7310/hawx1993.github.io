@@ -506,32 +506,6 @@ a {
   -webkit-box-align: center;
   text-align: center;
 }
-@keyframes ripple-animation {
-            0% {
-                box-shadow: 0 0 0 0 rgba(228,104,77,0.8);
-            }
-            100% {
-                box-shadow: 0 0 0 10px rgba(228,34,77,0);
-            }
-        }
-        @-webkit-keyframes ripple-animation {
-            0% {
-                box-shadow: 0 0 0 0 rgba(228,104,77,0.8);
-            }
-            100% {
-                box-shadow: 0 0 0 10px rgba(228,34,77,0);
-            }
-         }
-#header .profilepic:hover{
-	background-color: rgb(76,163,196);
-    box-shadow: 1px 1px 3px -1px rgb(76,163,196);
-    animation: ripple-animation .5s ease-in-out;
-    -webkit-animation: ripple-animation .5s ease-in-out;
-}
-#header .profilepic:hover:after{
-	animation: ripple-animation .5s ease-in-out;
-    -webkit-animation: ripple-animation .5s ease-in-out;
-}
 #header .profilepic img {
   width: 20%;
   height: 20%;
