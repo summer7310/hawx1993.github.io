@@ -1737,6 +1737,7 @@ pre .css ~ * .id {
   padding: 0 30px;
 }
 .footer-left {
+  position: fixed;
   float: left;
 }
 .footer-right {
