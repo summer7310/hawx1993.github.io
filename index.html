@@ -119,8 +119,6 @@ var _hmt = _hmt || [];
 					        
 								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/trigkit4" title="zhihu">zhihu</a>
 					        
-								<a class="twitter" target="_blank" href="https://twitter.com/trigkit4" title="twitter">twitter</a>
-					        
 						</div>
 					</nav>
 				</section>
@@ -147,7 +145,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">美团网前端实习生，微信：hawx1993</div>
+					<div id="js-aboutme">美团网前端开发实习生，微信：hawx1993</div>
 				</section>
 				
 			</div>
@@ -191,14 +189,92 @@ var _hmt = _hmt || [];
 			        
 						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/trigkit4" title="zhihu">zhihu</a>
 			        
-						<a class="twitter" target="_blank" href="https://twitter.com/trigkit4" title="twitter">twitter</a>
-			        
 				</div>
 			</nav>
 		</header>				
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-js-framework" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/19/js-framework/" class="article-date">
+  	<time datetime="2015-08-19T08:35:51.000Z" itemprop="datePublished">2015-08-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/19/js-framework/">关于一些前端js框架的源码研究</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="underscore-js源码">underscore.js源码</h2><p><code>Underscore.js</code> 没有对原生 <code>JavaScript</code> 对象进行扩展,而是通过调用 <code>_()</code> 方法进行封装，一旦封装完成，原生 <code>JavaScript</code> 对象便成为一个 <code>Underscore</code> 对象。</p>
+<p>###判断给定变量是否是对象<br>    // Is a given variable an object?<br>        _.isObject = function(obj) {<br>            var type = typeof obj;<br>            return type === ‘function’ || type === ‘object’ &amp;&amp; !!obj;<br>        };</p>
+<p>这是<code>underscore.js</code>的判断给定变量是否是<code>object</code>的一段源码。 我们知道<code>typeof</code>会返回如下六个值：</p>
+<pre><code><span class="number">1.</span> <span class="string">'undefined'</span> <span class="comment">--- 这个值未定义；</span>
+<span class="number">2.</span> <span class="string">'boolean'</span>    <span class="comment">--- 这个值是布尔值；</span>
+<span class="number">3.</span> <span class="string">'string'</span>        <span class="comment">--- 这个值是字符串；</span>
+<span class="number">4.</span> <span class="string">'number'</span>     <span class="comment">--- 这个值是数值；</span>
+<span class="number">5.</span> <span class="string">'object'</span>       <span class="comment">--- 这个值是对象或null；</span>
+<span class="number">6.</span> <span class="string">'function'</span>    <span class="comment">--- 这个值是函数。  </span>
+</code></pre><p>而<code>&amp;&amp;</code>的优先级要高与<code>||</code>。<code>!!</code>的作用相当于<code>Boolean()</code>，将其转换为布尔值。</p>
+<p>###判断给定值是否是DOM元素<br>    // Is a given value a DOM element?<br>        _.isElement = function(obj) {<br>            return !!(obj &amp;&amp; obj.nodeType === 1);<br>        };</p>
+<p>同样<code>!!</code>相当于<code>Boolean()</code>的作用，<code>nodeType === 1</code>则说明是元素节点，属性<code>attr</code>是2 ，文本<code>text</code>是3   </p>
+<pre><code><span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span>测试<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+    <span class="keyword">var</span> t = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);
+    alert(t.nodeType);<span class="comment">//1</span>
+    alert(t.nodeName);<span class="comment">//p</span>
+    alert(t.nodeValue);<span class="comment">//null</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+</code></pre><p><code>firstChild</code>属性</p>
+<pre><code>var t = document.getElementById<span class="params">('test')</span>.firstChild;
+alert<span class="params">(t.nodeType)</span>;<span class="comment">//3</span>
+alert<span class="params">(t.nodeName)</span>;<span class="comment">//#test</span>
+alert<span class="params">(t.nodeValue)</span>;<span class="comment">//测试</span>
+</code></pre><p>文本节点也算是一个节点，所以p的子节点是文本节点，所以返回3<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/19/js-framework/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-grunt" class="article article-type-post" itemscope itemprop="blogPost">
   
