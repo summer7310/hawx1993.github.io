@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/08/19/native-js/" class="article-date">
-  	<time datetime="2015-08-19T09:39:51.000Z" itemprop="datePublished">2015-08-19</time>
+  	<time datetime="2015-08-19T09:44:21.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
     </div>
   
@@ -222,12 +222,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>tag:</p>
-<ul>
-<li>js</li>
-<li>前端  </li>
-</ul>
-<h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
+        <h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee)</span>;<span class="comment">//指向拥有这个arguments对象的函数，即inner()</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee.caller)</span>;<span class="comment">//这个属性保存着调用当前函数的函数的引用,即outer()</span>
     console.<span class="built_in">log</span><span class="params">(inner.caller)</span>;<span class="comment">//[Function: outer]</span>

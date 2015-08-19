@@ -19,40 +19,25 @@ var _hmt = _hmt || [];
   
   <title>关于原生js的一些研究 | trigkit4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="tag:
-
-js
-前端  
-
-callee和callerfunction inner(){
+  <meta name="description" content="callee和callerfunction inner(){
     console.log(arguments.callee);//指向拥有这个arguments对象的函数，即inner()
     console.log(arguments.callee.caller);//这个属性保存着调用当前函数的函数的引用,即outer()
-    console.log(">
+    console.log(inner.caller);/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于原生js的一些研究">
 <meta property="og:url" content="hawx1993.github.io/2015/08/19/native-js/index.html">
 <meta property="og:site_name" content="trigkit4">
-<meta property="og:description" content="tag:
-
-js
-前端  
-
-callee和callerfunction inner(){
+<meta property="og:description" content="callee和callerfunction inner(){
     console.log(arguments.callee);//指向拥有这个arguments对象的函数，即inner()
     console.log(arguments.callee.caller);//这个属性保存着调用当前函数的函数的引用,即outer()
-    console.log(">
-<meta property="og:updated_time" content="2015-08-19T09:39:51.000Z">
+    console.log(inner.caller);/">
+<meta property="og:updated_time" content="2015-08-19T09:44:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于原生js的一些研究">
-<meta name="twitter:description" content="tag:
-
-js
-前端  
-
-callee和callerfunction inner(){
+<meta name="twitter:description" content="callee和callerfunction inner(){
     console.log(arguments.callee);//指向拥有这个arguments对象的函数，即inner()
     console.log(arguments.callee.caller);//这个属性保存着调用当前函数的函数的引用,即outer()
-    console.log(">
+    console.log(inner.caller);/">
   
     <link rel="alternative" href="/atom.xml" title="trigkit4" type="application/atom+xml">
   
@@ -223,7 +208,7 @@ callee和callerfunction inner(){
   
     <div class="article-meta">
       <a href="/2015/08/19/native-js/" class="article-date">
-  	<time datetime="2015-08-19T09:39:51.000Z" itemprop="datePublished">2015-08-19</time>
+  	<time datetime="2015-08-19T09:44:21.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
     </div>
   
@@ -252,12 +237,7 @@ callee和callerfunction inner(){
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>tag:</p>
-<ul>
-<li>js</li>
-<li>前端  </li>
-</ul>
-<h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
+        <h2 id="callee和caller">callee和caller</h2><pre><code><span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span>{</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee)</span>;<span class="comment">//指向拥有这个arguments对象的函数，即inner()</span>
     console.<span class="built_in">log</span><span class="params">(arguments.callee.caller)</span>;<span class="comment">//这个属性保存着调用当前函数的函数的引用,即outer()</span>
     console.<span class="built_in">log</span><span class="params">(inner.caller)</span>;<span class="comment">//[Function: outer]</span>
