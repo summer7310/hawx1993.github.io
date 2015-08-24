@@ -24,16 +24,16 @@ DOM的工作模式是：先加载文档的静态内容、再以动态方式对�
 PS：IE 中的所有 DOM 对象都是以 COM 对象的形式实现的，这意味着 IE 中的 DOM可能会和其他浏览器有一定的差异。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript操作DOM的那些坑">
-<meta property="og:url" content="hawx1993.github.io/2015/08/21/js-dom/index.html">
+<meta property="og:url" content="hawx1993.github.io/2015/08/24/js-dom/index.html">
 <meta property="og:site_name" content="trigkit4">
 <meta property="og:description" content="js在操作DOM中存在着许多跨浏览器方面的坑，本文花了我将近一周的时间整理，我将根据实例整理那些大大小小的“坑”。
 DOM的工作模式是：先加载文档的静态内容、再以动态方式对它们进行刷新，动态刷新不影响文档的静态内容。
 PS：IE 中的所有 DOM 对象都是以 COM 对象的形式实现的，这意味着 IE 中的 DOM可能会和其他浏览器有一定的差异。">
-<meta property="og:image" content="hawx1993.github.io/img/bVlyeX">
-<meta property="og:image" content="hawx1993.github.io/img/bVlsqp">
-<meta property="og:image" content="hawx1993.github.io/img/bVlsqs">
-<meta property="og:image" content="hawx1993.github.io/img/bVlllS">
-<meta property="og:updated_time" content="2015-08-21T07:32:26.000Z">
+<meta property="og:image" content="hawx1993.github.io/images/bVlyeX">
+<meta property="og:image" content="hawx1993.github.io/images/bVlsqp">
+<meta property="og:image" content="hawx1993.github.io/images/bVlsqs">
+<meta property="og:image" content="hawx1993.github.io/images/bVlllS">
+<meta property="og:updated_time" content="2015-08-24T09:18:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript操作DOM的那些坑">
 <meta name="twitter:description" content="js在操作DOM中存在着许多跨浏览器方面的坑，本文花了我将近一周的时间整理，我将根据实例整理那些大大小小的“坑”。
@@ -208,8 +208,8 @@ PS：IE 中的所有 DOM 对象都是以 COM 对象的形式实现的，这意�
       <div class="body-wrap"><article id="post-js-dom" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/21/js-dom/" class="article-date">
-  	<time datetime="2015-08-21T07:32:26.000Z" itemprop="datePublished">2015-08-21</time>
+      <a href="/2015/08/24/js-dom/" class="article-date">
+  	<time datetime="2015-08-24T09:18:40.000Z" itemprop="datePublished">2015-08-24</time>
 </a>
     </div>
   
@@ -422,7 +422,7 @@ clientX/clientY：W3C+ IE+ Firefox+ Opera+ Safari+ chrome+
 <span class="built_in">screenX</span>/<span class="built_in">screenY</span>：W3C+ IE+ Firefox+ Opera+ Safari+ chrome+
 </code></pre><p>查看下方<code>DEMO</code>：<br>你会发现<code>offsetX</code>在<code>Firefox</code>下是<code>undefined</code>，在<code>chrome</code>和<code>IE</code>则会正常显示。</p>
 <p><a href="https://jsfiddle.net/f4am208m/embedded/result/" target="_blank" rel="external">https://jsfiddle.net/f4am208m/embedded/result/</a></p>
-<p><img src="/img/bVlyeX" alt="图片描述"></p>
+<p><img src="/images/bVlyeX" alt="图片描述"></p>
 <p>###offsetLeft和style.left区别</p>
 <pre><code><span class="number">1</span><span class="class">.style</span><span class="class">.left</span>返回的是字符串，比如<span class="number">10px</span>。而offsetLeft返回的是数值，比如数值<span class="number">10</span>
 
@@ -792,8 +792,8 @@ chrome wheel deltaY 下<span class="number">100</span> 上-<span class="number">
 <h2 id="事件委托方法">事件委托方法</h2><pre><code><span class="comment">//事件委托方法  </span>
 IE：document.<span class="keyword">body</span>.onload = inject; <span class="comment">//Function inject()在这之前已被实现  </span>
 FF：document.<span class="keyword">body</span>.onload = inject();   
-</code></pre><h2 id="HTML5_的浏览器支持情况">HTML5 的浏览器支持情况</h2><p> <img src="/img/bVlsqp" alt="图片描述"></p>
-<p> <img src="/img/bVlsqs" alt="图片描述"></p>
+</code></pre><h2 id="HTML5_的浏览器支持情况">HTML5 的浏览器支持情况</h2><p> <img src="/images/bVlsqp" alt="图片描述"></p>
+<p> <img src="/images/bVlsqs" alt="图片描述"></p>
 <blockquote>
 <p>来源地址：<a href="http://fmbip.com/litmus/" target="_blank" rel="external">http://fmbip.com/litmus/</a></p>
 </blockquote>
@@ -815,7 +815,7 @@ FF：document.<span class="keyword">body</span>.onload = inject();
 
 <span class="number">6.</span> IE9的matches函数不能处理不在DOM树上的元素
 只要元素不在dom树上，一定会返回<span class="literal">false</span>，实在不行把元素丢在body里面匹配完了再删掉吧，当然了我们也可以自己写匹配函数以避免回流。    
-</code></pre><p><img src="/img/bVlllS" alt="to be continued..."></p>
+</code></pre><p><img src="/images/bVlllS" alt="to be continued..."></p>
 <blockquote>
 <p>资料参考：<br><a href="http://w3help.org/zh-cn/kb/，" target="_blank" rel="external">http://w3help.org/zh-cn/kb/，</a><br><a href="http://www.zhihu.com/question/29072028" target="_blank" rel="external">http://www.zhihu.com/question/29072028</a></p>
 </blockquote>
@@ -828,18 +828,18 @@ FF：document.<span class="keyword">body</span>.onload = inject();
     
 <nav id="article-nav">
   
-    <a href="/2015/08/24/benchmark/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/24/native-js/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          使用Benchmark.js和jsPerf分析代码性能
+          关于原生js的一些研究
         
       </div>
     </a>
   
   
-    <a href="/2015/08/19/grunt/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">grunt和前端模块管理工具的简单使用</div>
+    <a href="/2015/08/24/benchmark/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Benchmark.js和jsPerf分析代码性能</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -855,7 +855,7 @@ FF：document.<span class="keyword">body</span>.onload = inject();
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="js-dom" data-title="JavaScript操作DOM的那些坑" data-url="hawx1993.github.io/2015/08/21/js-dom/"></div>
+	<div class="ds-thread" data-thread-key="js-dom" data-title="JavaScript操作DOM的那些坑" data-url="hawx1993.github.io/2015/08/24/js-dom/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
