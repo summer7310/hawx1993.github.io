@@ -27,9 +27,9 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="trigkit4">
 <meta property="og:description" content="前言前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。
 比如，当我们想比较RegExp的test方法和String对象的indexOf方法查找字符串谁的速度更快的话，js代码在不同的浏览器，不同的操作系统环境运行的效率可能是不一样的，这就是为什么我们需要对其进行基准测试，在做基准测试方面，我们可以使用Benchmark.js和使用j">
-<meta property="og:image" content="hawx1993.github.io/source/images/github.png">
-<meta property="og:image" content="hawx1993.github.io/source/images/bVoNaT.jpg">
-<meta property="og:updated_time" content="2015-08-24T08:54:40.000Z">
+<meta property="og:image" content="hawx1993.github.io/./images/github.png">
+<meta property="og:image" content="hawx1993.github.io/./images/bVoNaT.jpg">
+<meta property="og:updated_time" content="2015-08-24T08:56:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Benchmark.js和jsPerf分析代码性能">
 <meta name="twitter:description" content="前言前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。
@@ -204,7 +204,7 @@ var _hmt = _hmt || [];
   
     <div class="article-meta">
       <a href="/2015/08/24/benchmark/" class="article-date">
-  	<time datetime="2015-08-24T08:54:40.000Z" itemprop="datePublished">2015-08-24</time>
+  	<time datetime="2015-08-24T08:56:36.000Z" itemprop="datePublished">2015-08-24</time>
 </a>
     </div>
   
@@ -243,7 +243,7 @@ var _hmt = _hmt || [];
 <p>github 地址：<a href="https://github.com/bestiejs/benchmark.js" target="_blank" rel="external">https://github.com/bestiejs/benchmark.js</a></p>
 </blockquote>
 <p>我们在很多<code>github</code> 开源项目中，往往都能看到<code>benchmark</code>文件夹，比如下面这个：</p>
-<p><img src="/source/images/github.png" alt="图片描述"></p>
+<p><img src="./images/github.png" alt="图片描述"></p>
 <p>于是<code>Google</code>之，发现这是用来做基准测试的。于是乎：<br><a id="more"></a><br>首先我们在系统根目录下，通过<code>npm intsall benchmark</code> 来安装<code>benchmark</code>。该模块会被写入<code>node_modules</code>文件夹中，我们在<code>test.js</code>文件中通过<code>require</code>方法引入该模块。</p>
 <p>将如下代码写入<code>test.js</code>文件，该文件置于系统根目录下：</p>
 <pre><code><span class="keyword">var</span> Benchmark = <span class="built_in">require</span>(<span class="string">'benchmark'</span>);
@@ -306,7 +306,7 @@ Fastest is str2
 <p>###运行测试<br>点击“<code>Run tests</code>”按钮开始测试两种算法的性能。建议在运行性能测试之前，关闭无关的浏览器页面，关闭其他程序，退出不必要的后台进程，以保证结果不受其他环境的影响。你也可以通过点击个别测试用例的名字单独运行这个例子</p>
 <p>点击该链接查看性能比较：<a href="http://jsperf.com/huang" target="_blank" rel="external">http://jsperf.com/huang</a></p>
 <p><code>jsPerf</code>还会统计所有运行过这个测试用例的浏览器的比较结果，显示在下方的<code>Browserscope</code>区域，可以通过它直观地看出各个版本浏览器的性能横向和纵向比较情况。</p>
-<p><img src="/source/images/bVoNaT.jpg" alt="图片描述"></p>
+<p><img src="./images/bVoNaT.jpg" alt="图片描述"></p>
 <p>可以看到<code>Firefox</code>下的执行速度明显高于<code>Chrome</code></p>
 <p>查看别人的测试用例</p>
 <p>我们可以通过 <a href="http://jsperf.com/browse" target="_blank" rel="external">http://jsperf.com/browse</a> 浏览最新提交的250项最新测试用例。我们也可以使用底部的<code>Revisions</code>来查看不同的版本，也就是不同浏览器的测试用例情况。</p>
