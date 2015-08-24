@@ -196,6 +196,66 @@ var _hmt = _hmt || [];
 </nav>
       <div class="body-wrap">
   
+    <article id="post-js-dom" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/24/js-dom/" class="article-date">
+  	<time datetime="2015-08-24T09:23:23.000Z" itemprop="datePublished">2015-08-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/24/js-dom/">JavaScript操作DOM的那些坑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>js</code>在操作<code>DOM</code>中存在着许多跨浏览器方面的坑，本文花了我将近一周的时间整理，我将根据实例整理那些大大小小的“坑”。</p>
+<p><code>DOM</code>的工作模式是：先加载文档的静态内容、再以动态方式对它们进行刷新，动态刷新不影响文档的静态内容。</p>
+<p>PS：<code>IE</code> 中的所有 <code>DOM</code> 对象都是以 <code>COM</code> 对象的形式实现的，这意味着 <code>IE</code> 中的 <code>DOM</code>可能会和其他浏览器有一定的差异。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/08/24/js-dom/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-native-js" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -278,66 +338,6 @@ console.<span class="built_in">log</span>(Array.prototype.slice.call(arr,<span c
       
         <p class="article-more-link">
           <a  href="/2015/08/24/native-js/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-js-dom" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/24/js-dom/" class="article-date">
-  	<time datetime="2015-08-24T09:18:40.000Z" itemprop="datePublished">2015-08-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/24/js-dom/">JavaScript操作DOM的那些坑</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>js</code>在操作<code>DOM</code>中存在着许多跨浏览器方面的坑，本文花了我将近一周的时间整理，我将根据实例整理那些大大小小的“坑”。</p>
-<p><code>DOM</code>的工作模式是：先加载文档的静态内容、再以动态方式对它们进行刷新，动态刷新不影响文档的静态内容。</p>
-<p>PS：<code>IE</code> 中的所有 <code>DOM</code> 对象都是以 <code>COM</code> 对象的形式实现的，这意味着 <code>IE</code> 中的 <code>DOM</code>可能会和其他浏览器有一定的差异。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browser/">browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/08/24/js-dom/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
