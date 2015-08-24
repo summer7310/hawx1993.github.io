@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<script type="text/javascript">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?57788da7d7b941eccd9eaa05422c29fe";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</script>
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Benchmark.js和jsPerf分析代码性能 | trigkit4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。
+比如，当我们想比较RegExp的test方法和String对象的indexOf方法查找字符串谁的速度更快的话，js代码在不同的浏览器，不同的操作系统环境运行的效率可能是不一样的，这就是为什么我们需要对其进行基准测试，在做基准测试方面，我们可以使用Benchmark.js和使用j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Benchmark.js和jsPerf分析代码性能">
+<meta property="og:url" content="hawx1993.github.io/2015/08/24/benchmark/index.html">
+<meta property="og:site_name" content="trigkit4">
+<meta property="og:description" content="前言前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。
+比如，当我们想比较RegExp的test方法和String对象的indexOf方法查找字符串谁的速度更快的话，js代码在不同的浏览器，不同的操作系统环境运行的效率可能是不一样的，这就是为什么我们需要对其进行基准测试，在做基准测试方面，我们可以使用Benchmark.js和使用j">
+<meta property="og:image" content="hawx1993.github.io/img/github">
+<meta property="og:image" content="hawx1993.github.io/img/bVoNaT">
+<meta property="og:updated_time" content="2015-08-24T08:39:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Benchmark.js和jsPerf分析代码性能">
+<meta name="twitter:description" content="前言前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。
+比如，当我们想比较RegExp的test方法和String对象的indexOf方法查找字符串谁的速度更快的话，js代码在不同的浏览器，不同的操作系统环境运行的效率可能是不一样的，这就是为什么我们需要对其进行基准测试，在做基准测试方面，我们可以使用Benchmark.js和使用j">
+  
+    <link rel="alternative" href="/atom.xml" title="trigkit4" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/me.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">trigkit4</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/hawx1993" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/hwax1993" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/trigkit4" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/Zepto/" style="font-size: 10px;">Zepto</a> <a href="/tags/benchmark/" style="font-size: 10px;">benchmark</a> <a href="/tags/bower/" style="font-size: 10px;">bower</a> <a href="/tags/broserify/" style="font-size: 10px;">broserify</a> <a href="/tags/browser/" style="font-size: 10px;">browser</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/jsPerf/" style="font-size: 10px;">jsPerf</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://segmentfault.com/u/trigkit4/">trigkit4</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">美团网前端开发实习生，微信：hawx1993</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">trigkit4</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/me.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">trigkit4</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hawx1993" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/hwax1993" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/trigkit4" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-benchmark" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/24/benchmark/" class="article-date">
+  	<time datetime="2015-08-24T08:39:51.000Z" itemprop="datePublished">2015-08-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Benchmark.js和jsPerf分析代码性能
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/benchmark/">benchmark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsPerf/">jsPerf</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2><p>前端开发中，掌握好浏览器的特性进行有针对性的性能调优是一项基本工作，同时，比较不同代码的执行速度也是一项关键的工作。</p>
+<p>比如，当我们想比较<code>RegExp</code>的<code>test</code>方法和<code>String</code>对象的<code>indexOf</code>方法查找字符串谁的速度更快的话，<code>js</code>代码在不同的浏览器，不同的操作系统环境运行的效率可能是不一样的，这就是为什么我们需要对其进行基准测试，在做基准测试方面，我们可以使用<code>Benchmark.js</code>和使用<code>jsPerf</code>（一个基于<code>JSLitmus</code>的基准测试库）。我们可以使用<code>jsPerf</code>来分享你的基准测试。</p>
+<h2 id="Benchmark-js_的使用">Benchmark.js 的使用</h2><blockquote>
+<p>github 地址：<a href="https://github.com/bestiejs/benchmark.js" target="_blank" rel="external">https://github.com/bestiejs/benchmark.js</a></p>
+</blockquote>
+<p>我们在很多<code>github</code> 开源项目中，往往都能看到<code>benchmark</code>文件夹，比如下面这个：</p>
+<p><img src="/img/github" alt="图片描述"></p>
+<p>于是<code>Google</code>之，发现这是用来做基准测试的。于是乎：<br>&lt;! – more –&gt;<br>首先我们在系统根目录下，通过<code>npm intsall benchmark</code> 来安装<code>benchmark</code>。该模块会被写入<code>node_modules</code>文件夹中，我们在<code>test.js</code>文件中通过<code>require</code>方法引入该模块。</p>
+<p>将如下代码写入<code>test.js</code>文件，该文件置于系统根目录下：</p>
+<pre><code><span class="keyword">var</span> Benchmark = <span class="built_in">require</span>(<span class="string">'benchmark'</span>);
+<span class="keyword">var</span> suite = <span class="keyword">new</span> Benchmark.Suite;
+
+<span class="comment">// 添加测试</span>
+suite.add(<span class="string">'RegExp#test'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    /o/.test(<span class="string">'Hello World!'</span>);
+})
+    .add(<span class="string">'String#indexOf'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="string">'Hello World!'</span>.indexOf(<span class="string">'o'</span>) &gt; -<span class="number">1</span>;
+    })
+<span class="comment">// add listeners</span>
+    .on(<span class="string">'cycle'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>{
+        <span class="built_in">console</span>.log(<span class="built_in">String</span>(event.target));
+    })
+    .on(<span class="string">'complete'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="built_in">console</span>.log(<span class="string">'Fastest is '</span> + <span class="keyword">this</span>.filter(<span class="string">'fastest'</span>).pluck(<span class="string">'name'</span>));
+    })
+<span class="comment">// run async</span>
+    .run({ <span class="string">'async'</span>: <span class="literal">true</span> });
+</code></pre><p>然后在终端执行<code>node test.js</code> 可见输出结果如下：</p>
+<pre><code>➜  ~ git:(master) ✗ node test.js
+RegExp<span class="preprocessor">#test x <span class="number">9</span>,<span class="number">847</span>,<span class="number">928</span> ops/sec ±<span class="number">1.47</span>% (<span class="number">83</span> runs sampled)</span>
+String<span class="preprocessor">#indexOf x <span class="number">23</span>,<span class="number">366</span>,<span class="number">017</span> ops/sec ±<span class="number">0.91</span>% (<span class="number">96</span> runs sampled)</span>
+Fastest is String<span class="preprocessor">#indexOf</span>
+</code></pre><p>结果最快的就是<code>String</code>对象的<code>indexOf</code>方法，其中，<code>Ops/sec</code> 测试结果以每秒钟执行测试代码的次数（<code>Ops/sec</code>）显示，这个数值越大越好。除了这个结果外，同时会显示测试过程中的统计误差，以及相对最好的慢了多少（%）</p>
+<p>###call和apply的比较</p>
+<pre><code><span class="keyword">var</span> Benchmark = <span class="built_in">require</span>(<span class="string">'benchmark'</span>);
+<span class="keyword">var</span> suite = <span class="keyword">new</span> Benchmark.Suite;
+<span class="keyword">var</span> arr1 = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>{
+    <span class="keyword">return</span> [].slice.apply(str);
+};
+<span class="keyword">var</span> str2 = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>{
+    <span class="keyword">return</span> [].slice.call(str);
+};
+<span class="comment">// 添加测试</span>
+suite.add(<span class="string">'arr1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+    arr1(<span class="string">'test'</span>);
+})
+    .add(<span class="string">'str2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        str2(<span class="string">'test'</span>);
+    })
+<span class="comment">// add listeners</span>
+    .on(<span class="string">'cycle'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>{
+        <span class="built_in">console</span>.log(<span class="built_in">String</span>(event.target));
+    })
+    .on(<span class="string">'complete'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+        <span class="built_in">console</span>.log(<span class="string">'Fastest is '</span> + <span class="keyword">this</span>.filter(<span class="string">'fastest'</span>).pluck(<span class="string">'name'</span>));
+    })
+<span class="comment">// run async</span>
+    .run({ <span class="string">'async'</span>: <span class="literal">true</span> });
+</code></pre><p>输出如下内容：</p>
+<pre><code>arr1 x <span class="number">596</span>,<span class="number">505</span> ops/sec ±<span class="number">1.14</span>% (<span class="number">95</span> runs sampled)
+str2 x <span class="number">627</span>,<span class="number">822</span> ops/sec ±<span class="number">1.27</span>% (<span class="number">92</span> runs sampled)
+Fastest is str2
+</code></pre><h2 id="jsPerf_的使用">jsPerf 的使用</h2><p><code>jsPerf</code> 提供了一个简便的方式来创建和共享测试用例，并可以比较不同<code>JavaScript</code>代码段的性能。<code>jsPerf</code>也是基于<code>Benchmark</code>来运行的。</p>
+<p>打开<code>jsPerf</code>站点：<a href="http://jsperf.com/，先将必填的项目填了。其中，`slug`是短名称，会生成一个网址，因此不可与别人的重复。然后在`Code" target="_blank" rel="external">http://jsperf.com/，先将必填的项目填了。其中，`slug`是短名称，会生成一个网址，因此不可与别人的重复。然后在`Code</a> snippets to compare<code>区域填入</code>title<code>和用于测试的code。最后点击</code>save test case` 完成验证即可。浏览器会自动跳转到测试页面</p>
+<p><code>Async</code>选项框是用来测试一些异步调用的性能的，我们的代码没有使用异步方法，所以不必勾选。</p>
+<p>###运行测试<br>点击“<code>Run tests</code>”按钮开始测试两种算法的性能。建议在运行性能测试之前，关闭无关的浏览器页面，关闭其他程序，退出不必要的后台进程，以保证结果不受其他环境的影响。你也可以通过点击个别测试用例的名字单独运行这个例子</p>
+<p>点击该链接查看性能比较：<a href="http://jsperf.com/huang" target="_blank" rel="external">http://jsperf.com/huang</a></p>
+<p><code>jsPerf</code>还会统计所有运行过这个测试用例的浏览器的比较结果，显示在下方的<code>Browserscope</code>区域，可以通过它直观地看出各个版本浏览器的性能横向和纵向比较情况。</p>
+<p><img src="/img/bVoNaT" alt="图片描述"></p>
+<p>可以看到<code>Firefox</code>下的执行速度明显高于<code>Chrome</code></p>
+<p>查看别人的测试用例</p>
+<p>我们可以通过 <a href="http://jsperf.com/browse" target="_blank" rel="external">http://jsperf.com/browse</a> 浏览最新提交的250项最新测试用例。我们也可以使用底部的<code>Revisions</code>来查看不同的版本，也就是不同浏览器的测试用例情况。</p>
+<p>##总结</p>
+<p><code>John Resig</code> 在其博文 <a href="http://ejohn.org/blog/javascript-benchmark-quality/" target="_blank" rel="external">JavaScript 基准测试的质量</a> 中提到，应该尽量考虑到每个测试结果的误差并去减小它。扩大测试的样本值，健全的测试执行，都能够起到减少误差的作用。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/21/js-dom/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript操作DOM的那些坑</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="benchmark" data-title="使用Benchmark.js和jsPerf分析代码性能" data-url="hawx1993.github.io/2015/08/24/benchmark/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"trigkit4"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 trigkit4
+    	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
